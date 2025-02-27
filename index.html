@@ -4,206 +4,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="札幌を拠点とする賃貸業経営会社、ハコノウエ合同会社のホームページです。">
-    <title>ハコノウエ合同会社 | Hakonoue inc.</title>
+    <title>Hakonoue inc. | ハコノウエ合同会社</title>
     <style>
-        /* 基本スタイル */
+        /* ベーススタイル */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
         }
         
         body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #333;
             background-color: #fff;
         }
         
         a {
-            color: #0066cc;
             text-decoration: none;
+            color: #333;
         }
         
-        a:hover {
-            text-decoration: underline;
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
         /* ヘッダー */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
             z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
-        .header-container {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
         }
         
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #333;
         }
         
-        nav ul {
+        .nav-links {
             display: flex;
-            list-style: none;
         }
         
-        nav ul li {
+        .nav-links a {
             margin-left: 30px;
-        }
-        
-        nav ul li a {
-            color: #333;
             font-weight: 500;
+            position: relative;
         }
         
-        /* ハンバーガーメニュー */
-        .menu-toggle {
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #333;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
             display: none;
-            flex-direction: column;
+            font-size: 24px;
             cursor: pointer;
-        }
-        
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: #333;
-            margin-bottom: 5px;
-            transition: all 0.3s ease;
         }
         
         /* ヒーローセクション */
         .hero {
-            position: relative;
             height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background-color: #f5f5f5;
-            margin-top: 60px;
-            overflow: hidden;
-
+            margin-bottom: 60px;
+            background-image: url('joel-filipe-RFDP7_80v5A-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
         }
         
-        .hero-image {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            z-index: 1;
+            background: rgba(0, 0, 0, 0.5);
         }
         
         .hero-content {
             position: relative;
             z-index: 2;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            max-width: 800px;
+            padding: 0 20px;
         }
         
-        .hero-title {
-            font-size: 64px;
-            font-weight: bold;
+        .hero h1 {
+            font-size: 48px;
             margin-bottom: 20px;
             letter-spacing: 2px;
         }
         
-        /* メインコンテンツ */
-        main {
-            margin-top: 0;
-        }
-        
+        /* セクション共通 */
         section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 80px 0;
         }
         
-        section:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
+        .section-title {
             text-align: center;
+            margin-bottom: 50px;
             position: relative;
         }
         
-        h2::after {
+        .section-title h2 {
+            font-size: 36px;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .section-title h2:after {
             content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: #0066cc;
-            margin: 15px auto 30px;
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: #333;
+            bottom: 0;
+            left: 25%;
         }
         
-        p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        
-        /* MISSION セクション */
+        /* ミッションセクション */
         .mission-content {
             max-width: 800px;
             margin: 0 auto;
+            text-align: center;
+            line-height: 2;
         }
         
-        /* SERVICE セクション */
-        .services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .mission-content p {
+            margin-bottom: 20px;
+        }
+        
+        /* サービスセクション */
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 30px;
-            margin-top: 40px;
         }
         
-        .service-item {
-            background-color: #fff;
+        .service-box {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
             padding: 30px;
+            background-color: #f9f9f9;
             border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
         
-        .service-item:hover {
+        .service-box:hover {
             transform: translateY(-5px);
         }
         
-        .service-item h3 {
-            font-size: 24px;
+        .service-box h3 {
             margin-bottom: 15px;
-            color: #0066cc;
+            font-size: 22px;
         }
         
-        .service-item ul {
+        .service-box ul {
             list-style-position: inside;
             margin-left: 10px;
         }
         
-        .service-item li {
+        .service-box li {
             margin-bottom: 10px;
         }
         
-        /* ABOUT セクション */
+        /* 会社概要セクション */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
         .about-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 30px;
         }
         
         .about-table tr {
@@ -211,163 +217,165 @@
         }
         
         .about-table th {
-            width: 30%;
             padding: 15px 10px;
             text-align: left;
-            font-weight: bold;
+            width: 30%;
         }
         
         .about-table td {
             padding: 15px 10px;
         }
         
-        /* WHO WE ARE セクション */
-        .team-members {
-            margin-top: 40px;
+        /* チームセクション */
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
         }
         
         .team-member {
-            margin-bottom: 40px;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         
         .team-member h3 {
-            font-size: 24px;
             margin-bottom: 15px;
-            color: #0066cc;
+            font-size: 22px;
         }
         
-        .member-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 18px;
+        .team-member p {
+            line-height: 1.8;
+        }
+        
+        /* お問い合わせセクション */
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-form-container {
+            height: 600px;
+            width: 100%;
+            margin-top: 30px;
         }
         
         /* フッター */
         footer {
             background-color: #333;
             color: #fff;
-            padding: 40px 20px;
+            padding: 30px 0;
             text-align: center;
         }
         
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .copyright {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #aaa;
-        }
-        
-        /* レスポンシブ対応 */
+        /* レスポンシブデザイン */
         @media (max-width: 768px) {
-            .header-container {
-                padding: 15px;
+            .header-content {
+                padding: 0 15px;
             }
             
-            .menu-toggle {
-                display: flex;
-            }
-            
-            nav ul {
+            .nav-links {
                 display: none;
-                flex-direction: column;
                 position: absolute;
                 top: 60px;
                 left: 0;
                 width: 100%;
-                background-color: #fff;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                background: #fff;
+                flex-direction: column;
                 padding: 20px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
             
-            nav.active ul {
+            .nav-links.active {
                 display: flex;
             }
             
-            nav ul li {
+            .nav-links a {
                 margin: 10px 0;
+                display: block;
             }
             
-            .hero-title {
-                font-size: 42px;
+            .mobile-menu {
+                display: block;
             }
             
-            section {
-                padding: 60px 15px;
+            .hero h1 {
+                font-size: 36px;
             }
             
-            h2 {
+            .section-title h2 {
                 font-size: 28px;
             }
             
-            .services {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-table th, 
-            .about-table td {
-                display: block;
-                width: 100%;
+            .service-box, .team-member {
+                min-width: 100%;
             }
             
             .about-table th {
-                padding-bottom: 0;
-                background-color: #f9f9f9;
+                width: 35%;
+                font-size: 14px;
+            }
+            
+            .about-table td {
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- ヘッダー -->
     <header>
-        <div class="header-container">
+        <div class="container header-content">
             <div class="logo">Hakonoue inc.</div>
-            <div class="menu-toggle" id="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="#mission">MISSION</a></li>
-                    <li><a href="#service">SERVICE</a></li>
-                    <li><a href="#about">ABOUT</a></li>
-                    <li><a href="#who-we-are">WHO WE ARE</a></li>
-                </ul>
+            <nav class="nav-links">
+                <a href="#mission">MISSION</a>
+                <a href="#service">SERVICE</a>
+                <a href="#about">ABOUT</a>
+                <a href="#team">WHO WE ARE</a>
+                <a href="#contact">CONTACT</a>
             </nav>
+            <div class="mobile-menu">☰</div>
         </div>
     </header>
 
-    <div class="hero">
-        <img src="./joel-filipe-RFDP7_80v5A-unsplash.jpg" alt="モダンな建築物" class="hero-image">
+    <!-- ヒーローセクション -->
+    <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">Hakonoue inc.</h1>
+            <h1>Hakonoue inc.</h1>
+            <p>「箱の上」を目指す不動産賃貸業の形に挑戦する</p>
         </div>
-    </div>
+    </section>
 
-    <main>
-        <section id="mission">
-            <h2>MISSION</h2>
-            <div class="mission-content">
-                <p>「家なんてただの箱」という人もいる。</p>
-                <p>「箱の上」を目指す不動産賃貸業の形に挑戦する。</p>
-                <p>「家はただの箱にすぎない。」そういう言い方もできる。</p>
-                <p>そう考える人もいる。</p>
-                <p>「箱」というのは、「変えられない」ということ、「画一的である」ということ。</p>
-                <p>特に賃貸物件は、不動産賃貸業という経営の制約上、設備や内外装が画一的にならざるを得なかったり、カスタマイズが難しいことが多い。</p>
-                <p>しかしながら、この変化の大きい時代において、「賃貸に住み続けたい」と考える人は増加傾向にある。</p>
-                <p>一方で、人口減少、インフレによる資源高騰、人材不足により賃貸経営の厳しさは増していく。</p>
-                <p>そんな中で、賃貸経営の形もダイナミックに変わっていくに違いない。</p>
-                <p>それならば、「"箱"以上を目指すあり方」と「不動産経営の両立」を目指したい。</p>
+    <!-- ミッションセクション -->
+    <section id="mission">
+        <div class="container">
+            <div class="section-title">
+                <h2>MISSION</h2>
             </div>
-        </section>
+            <div class="mission-content">
+                <p>「家なんてただの箱」という人もいる。<br>「箱の上」を目指す不動産賃貸業の形に挑戦する。</p>
+                <p>「家はただの箱にすぎない。」そういう言い方もできる。<br>そう考える人もいる。</p>
+                <p>「箱」というのは、「変えられない」ということ、「画一的である」ということ。<br>特に賃貸物件は、不動産賃貸業という経営の制約上、設備や内外装が画一的にならざるを得なかったり、カスタマイズが難しいことが多い。</p>
+                <p>しかしながら、この変化の大きい時代において、「賃貸に住み続けたい」と考える人は増加傾向にある。<br>一方で、人口減少、インフレによる資源高騰、人材不足により賃貸経営の厳しさは増していく。</p>
+                <p>そんな中で、賃貸経営の形もダイナミックに変わっていくに違いない。<br>それならば、「"箱"以上を目指すあり方」と「不動産経営の両立」を目指したい。</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="service">
-            <h2>SERVICE</h2>
-            <div class="services">
-                <div class="service-item">
+    <!-- サービスセクション -->
+    <section id="service" style="background-color: #f5f5f5;">
+        <div class="container">
+            <div class="section-title">
+                <h2>SERVICE</h2>
+            </div>
+            <div class="services-container">
+                <div class="service-box">
                     <h3>1. 不動産賃貸業</h3>
                     <ul>
                         <li>リフォームによる物件再生</li>
@@ -375,7 +383,7 @@
                         <li>新築RC</li>
                     </ul>
                 </div>
-                <div class="service-item">
+                <div class="service-box">
                     <h3>2. マーケティング支援事業</h3>
                     <ul>
                         <li>不動産関連業種のマーケティング支援</li>
@@ -383,65 +391,92 @@
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="about">
-            <h2>ABOUT</h2>
-            <table class="about-table">
-                <tr>
-                    <th>名称</th>
-                    <td>ハコノウエ合同会社（Hakonoue inc.）</td>
-                </tr>
-                <tr>
-                    <th>住所</th>
-                    <td>北海道札幌市北区 北7条西4丁目1番1号トーカン札幌第一キャステール607</td>
-                </tr>
-                <tr>
-                    <th>代表</th>
-                    <td>神原志帆</td>
-                </tr>
-                <tr>
-                    <th>設立</th>
-                    <td>2021年12月</td>
-                </tr>
-                <tr>
-                    <th>資本金</th>
-                    <td>金9,000,000円</td>
-                </tr>
-            </table>
-        </section>
+    <!-- 会社概要セクション -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>ABOUT</h2>
+            </div>
+            <div class="about-content">
+                <table class="about-table">
+                    <tr>
+                        <th>名称</th>
+                        <td>ハコノウエ合同会社（Hakonoue inc.）</td>
+                    </tr>
+                    <tr>
+                        <th>住所</th>
+                        <td>北海道札幌市北区 北7条西4丁目1番1号トーカン札幌第一キャステール607</td>
+                    </tr>
+                    <tr>
+                        <th>代表</th>
+                        <td>神原志帆</td>
+                    </tr>
+                    <tr>
+                        <th>設立</th>
+                        <td>2021年12月</td>
+                    </tr>
+                    <tr>
+                        <th>資本金</th>
+                        <td>金9,000,000円</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
 
-        <section id="who-we-are">
-            <h2>WHO WE ARE</h2>
-            <div class="team-members">
+    <!-- チームセクション -->
+    <section id="team" style="background-color: #f5f5f5;">
+        <div class="container">
+            <div class="section-title">
+                <h2>WHO WE ARE</h2>
+            </div>
+            <div class="team-container">
                 <div class="team-member">
-                    <h3>代表</h3>
-                    <div class="member-title">神原志帆</div>
+                    <h3>代表 神原志帆</h3>
                     <p>東京大学在学中にシステム開発・ITコンサルティング事業にて起業。在学中にヘルスケアベンチャーFiNC、ITベンチャーDeNA、Googleなどでインターンを行う。その後、複数のWEBメディアの立ち上げに関わり、在学中に起業。工務店・ハウスメーカーを中心としたWEBマーケティング事業に従事。</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- お問い合わせセクション -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>CONTACT</h2>
+            </div>
+            <div class="contact-content">
+                <p>下記フォームからお気軽にお問い合わせください</p>
+                <div class="contact-form-container">
+                    <iframe src="https://www.notion-easy-form.com/forms/2d5e8b10-2efe-4a23-ba66-a11f652fa46c?embed=true" width="100%" height="100%" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
     <footer>
-        <div class="footer-content">
-            <div class="logo">Hakonoue inc.</div>
-            <div class="copyright">&copy; ハコノウエ合同会社2025 All Rights Reserved.</div>
+        <div class="container">
+            <p>ハコノウエ合同会社 2025 All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // ハンバーガーメニューの制御
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('main-nav').classList.toggle('active');
+        // モバイルメニューの開閉
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
         });
-
-        // スムーズスクロール
+        
+        // ナビゲーションリンククリック時のスムーススクロール
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                document.getElementById('main-nav').classList.remove('active');
+                // モバイルメニューが開いていれば閉じる
+                document.querySelector('.nav-links').classList.remove('active');
                 
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
@@ -452,6 +487,23 @@
                     behavior: 'smooth'
                 });
             });
+        });
+        
+        // スクロール時のヘッダー表示制御
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const header = document.querySelector('header');
+            
+            if (currentScrollTop > lastScrollTop) {
+                // 下スクロール
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                // 上スクロール
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = currentScrollTop;
         });
     </script>
 </body>
