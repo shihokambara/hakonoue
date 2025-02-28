@@ -393,6 +393,79 @@
         </div>
     </section>
 
+    <!-- ニュースセクション -->
+<section id="news">
+    <div class="container">
+        <div class="section-title">
+            <h2>NEWS</h2>
+        </div>
+        <div id="news-content">
+            <p>ニュースを読み込んでいます...</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    async function loadNews() {
+        try {
+            const response = await fetch('news.json'); // news.json を取得
+            const data = await response.json();
+            const newsContainer = document.getElementById("news-content");
+            newsContainer.innerHTML = ""; // 既存のメッセージをクリア
+
+            if (data.results.length === 0) {
+                newsContainer.innerHTML = "<p>現在ニュースはありません。</p>";
+                return;
+            }
+
+            data.results.forEach(news => {
+                const title = news.properties.Name.title[0]?.plain_text || "タイトルなし";
+                const date = news.properties.Date.date?.start || "日付なし";
+                const content = news.properties.Content.rich_text[0]?.plain_text || "内容なし";
+
+                const article = document.createElement("article");
+                article.classList.add("news-item");
+                article.innerHTML = `
+                    <h3>${title}</h3>
+                    <p><strong>${date}</strong></p>
+                    <p>${content}</p>
+                `;
+                newsContainer.appendChild(article);
+            });
+        } catch (error) {
+            console.error("ニュースの取得に失敗しました:", error);
+            document.getElementById("news-content").innerHTML = "<p>ニュースを読み込めませんでした。</p>";
+        }
+    }
+
+    loadNews();
+</script>
+
+<style>
+    /* ニュースセクションのスタイル */
+    #news {
+        background-color: #f5f5f5;
+        padding: 80px 0;
+    }
+
+    .news-item {
+        background: white;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-item h3 {
+        margin-bottom: 10px;
+    }
+
+    .news-item p {
+        margin-bottom: 5px;
+    }
+</style>
+
+
     <!-- 会社概要セクション -->
     <section id="about">
         <div class="container">
