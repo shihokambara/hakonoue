@@ -394,12 +394,13 @@
     </section>
 
     <!-- ニュースセクション -->
+<!-- ニュースセクション -->
 <section id="news">
     <div class="container">
         <div class="section-title">
             <h2>NEWS</h2>
         </div>
-        <div id="news-content">
+        <div id="news-content" class="news-container">
             <p>ニュースを読み込んでいます...</p>
         </div>
     </div>
@@ -414,7 +415,7 @@
             newsContainer.innerHTML = ""; // 既存のメッセージをクリア
 
             if (data.results.length === 0) {
-                newsContainer.innerHTML = "<p>現在ニュースはありません。</p>";
+                newsContainer.innerHTML = "<p class='no-news'>現在ニュースはありません。</p>";
                 return;
             }
 
@@ -426,15 +427,15 @@
                 const article = document.createElement("article");
                 article.classList.add("news-item");
                 article.innerHTML = `
-                    <h3>${title}</h3>
-                    <p><strong>${date}</strong></p>
-                    <p>${content}</p>
+                    <div class="news-date">${date}</div>
+                    <h3 class="news-title">${title}</h3>
+                    <div class="news-content">${content}</div>
                 `;
                 newsContainer.appendChild(article);
             });
         } catch (error) {
             console.error("ニュースの取得に失敗しました:", error);
-            document.getElementById("news-content").innerHTML = "<p>ニュースを読み込めませんでした。</p>";
+            document.getElementById("news-content").innerHTML = "<p class='news-error'>ニュースを読み込めませんでした。</p>";
         }
     }
 
@@ -444,27 +445,77 @@
 <style>
     /* ニュースセクションのスタイル */
     #news {
-        background-color: #f5f5f5;
+        background-color: #f9f9f9;
         padding: 80px 0;
+    }
+
+    .news-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
     }
 
     .news-item {
         background: white;
-        padding: 20px;
-        margin-bottom: 20px;
-        border-radius: 5px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        border-left: 4px solid #333;
     }
 
-    .news-item h3 {
-        margin-bottom: 10px;
+    .news-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
     }
 
-    .news-item p {
-        margin-bottom: 5px;
+    .news-date {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .news-title {
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: #333;
+        line-height: 1.4;
+    }
+
+    .news-content {
+        color: #555;
+        line-height: 1.6;
+    }
+
+    .no-news, .news-error {
+        text-align: center;
+        padding: 40px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        color: #666;
+    }
+
+    .news-error {
+        color: #e74c3c;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 768px) {
+        .news-item {
+            padding: 20px;
+        }
+        
+        .news-title {
+            font-size: 18px;
+        }
     }
 </style>
-
 
     <!-- 会社概要セクション -->
     <section id="about">
