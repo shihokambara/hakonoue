@@ -395,52 +395,27 @@
 
     <!-- ニュースセクション -->
 <!-- ニュースセクション -->
+<!-- ニュースセクション -->
 <section id="news">
-    <div class="container">
-        <div class="section-title">
-            <h2>NEWS</h2>
-        </div>
-        <div id="news-content" class="news-container">
-            <p>ニュースを読み込んでいます...</p>
-        </div>
+  <div class="container">
+    <div class="section-title">
+      <h2>NEWS</h2>
     </div>
+    <div id="news-content" class="news-container">
+      <!-- ベタ打ちのニュース項目 -->
+      <article class="news-item">
+        <div class="news-date">2025-07-17</div>
+        <h3 class="news-title">
+          <a href="https://rattle-sodium-f98.notion.site/2338b79c15b48053a182d46759abad1c?pvs=74" target="_blank" rel="noopener">新築マンション「シティグレイス新札幌」募集開始！</a>
+        </h3>
+        <div class="news-content">
+          詳細はNotionページをご覧ください。
+        </div>
+      </article>
+    </div>
+  </div>
 </section>
 
-<script>
-    async function loadNews() {
-        try {
-            const response = await fetch('news.json'); // news.json を取得
-            const data = await response.json();
-            const newsContainer = document.getElementById("news-content");
-            newsContainer.innerHTML = ""; // 既存のメッセージをクリア
-
-            if (data.results.length === 0) {
-                newsContainer.innerHTML = "<p class='no-news'>現在ニュースはありません。</p>";
-                return;
-            }
-
-            data.results.forEach(news => {
-                const title = news.properties.Name.title[0]?.plain_text || "タイトルなし";
-                const date = news.properties.Date.date?.start || "日付なし";
-                const content = news.properties.Content.rich_text[0]?.plain_text || "内容なし";
-
-                const article = document.createElement("article");
-                article.classList.add("news-item");
-                article.innerHTML = `
-                    <div class="news-date">${date}</div>
-                    <h3 class="news-title">${title}</h3>
-                    <div class="news-content">${content}</div>
-                `;
-                newsContainer.appendChild(article);
-            });
-        } catch (error) {
-            console.error("ニュースの取得に失敗しました:", error);
-            document.getElementById("news-content").innerHTML = "<p class='news-error'>ニュースを読み込めませんでした。</p>";
-        }
-    }
-
-    loadNews();
-</script>
 
 <style>
     /* ニュースセクションのスタイル */
